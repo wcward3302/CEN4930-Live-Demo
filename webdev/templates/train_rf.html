@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train a Model</title>
+    <style>
+        /* Background gradient */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1e90ff, #32cd32);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Centering content */
+        .container {
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            border-radius: 15px;
+            padding: 20px 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        /* Styling buttons */
+        button {
+            background-color: #ffffff;
+            color: #1e90ff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #32cd32;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff4500;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #e63900;
+            transform: scale(1.1);
+        }
+
+        input[type="file"] {
+            margin: 10px 0;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Train a Model</h1>
+        <form id="trainForm" action="/train_model_rf" method="POST" enctype="multipart/form-data">
+            <p>Upload a CSV file:</p>
+            <input type="file" name="file" required>
+            <br>
+            <button type="submit" id="trainButton">Start Training Model</button>
+        </form>
+        <div id="statusMessage" style="margin-top: 20px; display: none;">
+            <p>Training in progress, please wait...</p>
+        </div>
+        <div id="resultMessage" style="margin-top: 20px; display: none;"></div>
+        <a href="/" class="back-button">← Back to Home</a>
+    </div>
+    <script>
+        const trainForm = document.getElementById('trainForm');
+        const trainButton = document.getElementById('trainButton');
+        const statusMessage = document.getElementById('statusMessage');
+        const resultMessage = document.getElementById('resultMessage');
+    
+        trainForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+            statusMessage.style.display = 'block';
+            trainButton.disabled = true;
+    
+            const formData = new FormData(trainForm);
+            try {
+                const response = await fetch('/train_model_rf', {
+                    method: 'POST',
+                    body: formData,
+                });
+    
+                if (response.ok) {
+                    const result = await response.text();
+                    resultMessage.innerHTML = `<p>${result}</p>`;
+                    resultMessage.style.color = 'green';
+                } else {
+                    const error = await response.text();
+                    resultMessage.innerHTML = `<p>Error: ${error}</p>`;
+                    resultMessage.style.color = 'red';
+                }
+            } catch (error) {
+                resultMessage.innerHTML = `<p>An unexpected error occurred: ${error}</p>`;
+                resultMessage.style.color = 'red';
+            } finally {
+                resultMessage.style.display = 'block';
+                statusMessage.style.display = 'none';
+                trainButton.disabled = false;
+            }
+        });
+    </script>
+    
+</body>
+</html>
