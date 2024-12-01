@@ -82,7 +82,8 @@ def train_random_forest_model(data):
     data['2029'] = data['2029'].round(1)
 
     #Save the updated dataset with predictions to a CSV file
-    output_file_path = 'webdev/dynamic_dataset.csv'
+    output_file_path = 'webdev/data/dynamic_dataset.csv'
     data.to_csv(output_file_path, index=False)
+    print("output to ", output_file_path)
 
     print(f"Updated dataset saved to {output_file_path}")

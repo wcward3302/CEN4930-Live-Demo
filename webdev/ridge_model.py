@@ -77,7 +77,7 @@ def train_ridge_model(data):
     new_data_df['2029'] = new_data_df['2029'].round(1)
 
     #Save the updated dataset with predictions to a CSV file
-    output_file_path = 'webdev/dynamic_dataset.csv'
+    output_file_path = 'webdev/data/dynamic_dataset.csv'
     new_data_df.to_csv(output_file_path, index=False)
 
     print(f"Updated dataset saved to {output_file_path}")
