@@ -1,0 +1,5 @@
+venv/
+webdev/__pycache__/
+models/
+static/
+uploads/
