@@ -137,7 +137,7 @@ def train_model_rr():
         #Load the data and train the Ridge Regression model
         data = pd.read_csv(file_path)
         print(data.head())
-        trained_model = train_random_forest_model(data)
+        trained_model = train_ridge_model(data)
         return "Model trained successfully!", 200
     except Exception as e:
         return f"An error occurred: {e}", 500
@@ -164,7 +164,7 @@ def train_model_rf():
         #Load the data and train the Random Forest model
         data = pd.read_csv(file_path)
         print(data.head())
-        trained_model = train_ridge_model(data)  #Call the imported function
+        trained_model = train_random_forest_model(data)  #Call the imported function
         return "Model trained successfully!", 200
     except Exception as e:
         return f"An error occurred: {e}", 500
