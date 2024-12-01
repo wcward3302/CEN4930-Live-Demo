@@ -8,11 +8,11 @@ This repository contains a web application for training and predicting using mac
 ## Project Structure
 
 - **app.py**: Main Flask application file that handles routing and server logic.
-- **cleaned_Dataset.csv**: The dataset used for training and predictions.
+- **dynamic_dataset.csv**: The dataset used for generating the heat map.
 - **random_forest_model.py**: Script for training and predicting using a Random Forest model.
 - **ridge_model.py**: Script for training and predicting using a Ridge Regression model.
 - **templates/**: Directory containing HTML templates for the web application.
-- **untouched_data.csv**: Original dataset before any modifications.
+- **original_dataset.csv**: Original dataset before any modifications, used to train the models
 
 ## Setup
 
@@ -37,7 +37,7 @@ This repository contains a web application for training and predicting using mac
 
 1. **Start the Flask server**:
     ```sh
-    python web\ dev/app.py
+    python webdev/app.py
     ```
 
 2. **Open your browser** and navigate to `http://127.0.0.1:5000/` to access the application.
