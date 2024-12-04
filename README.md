@@ -7,6 +7,7 @@ Repo for Flask server which will run front end and AI model training for soil or
 - William Ward
 - Joshua Wurtenberg
 - Caleb Newman
+- Julio Lapon
 
 # Machine Learning Web Application
 
