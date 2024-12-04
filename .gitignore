@@ -1,5 +1,5 @@
 venv/
-webdev/__pycache__/
+__pycache__/
 models/
 static/
 uploads/

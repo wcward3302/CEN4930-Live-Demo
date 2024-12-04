@@ -75,8 +75,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Train a Random Forest Model</h1>
-        <form id="trainForm" action="/train_model_rf" method="POST" enctype="multipart/form-data">
+        <h1>Train Model</h1>
+        <p>Upload historical data here and begin the training of a ridge regression model!</p>
+        <form id="trainForm" action="/train_model" method="POST" enctype="multipart/form-data">
             <p>Upload a CSV file:</p>
             <input type="file" name="file" required>
             <br>
@@ -101,7 +102,7 @@
     
             const formData = new FormData(trainForm);
             try {
-                const response = await fetch('/train_model_rf', {
+                const response = await fetch('/train_model', {
                     method: 'POST',
                     body: formData,
                 });

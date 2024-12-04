@@ -107,9 +107,15 @@
                 {% endfor %}
             </div>
         </form>
-        <a href="/train_random_forest" class="train-button">Train Random Forest Model</a>
-        <a href="/train_ridge_regression" class="train-button">Train Ridge Regression Model</a>
-        <button onclick="resetDataset()" class="train-button" >Reset Dataset</button>
+        <div>
+            <a href="/train_model" class="train-button">Train Model</a>
+        </div>
+        <div>
+            <a href="/generate_prediction" class="train-button">Generate Prediction Data</a>
+        </div>
+        <div>
+            <button onclick="resetDataset()" class="train-button" >Reset Dataset</button>
+        </div>
     </div>
 
     <script>

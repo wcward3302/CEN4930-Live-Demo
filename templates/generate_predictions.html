@@ -75,12 +75,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Train a Ridge Regression Model</h1>
-        <form id="trainForm" action="/train_model_rr" method="POST" enctype="multipart/form-data">
+        <h1>Train a Random Forest Model</h1>
+        <p>Use a trained machine learning model to generate soil organic carbon levels predictions based on historical data</p>
+        <form id="trainForm" action="/generate_prediction" method="POST" enctype="multipart/form-data">
             <p>Upload a CSV file:</p>
             <input type="file" name="file" required>
             <br>
-            <button type="submit" id="trainButton">Start Training Model</button>
+            <button type="submit" id="trainButton">Generate Prediction</button>
         </form>
         <div id="statusMessage" style="margin-top: 20px; display: none;">
             <p>Training in progress, please wait...</p>
@@ -101,7 +102,7 @@
     
             const formData = new FormData(trainForm);
             try {
-                const response = await fetch('/train_model_rr', {
+                const response = await fetch('/generate_prediction_data', {
                     method: 'POST',
                     body: formData,
                 });

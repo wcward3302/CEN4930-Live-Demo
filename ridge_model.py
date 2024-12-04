@@ -8,7 +8,7 @@ import pandas as pd
 import joblib
 import os
 
-def train_ridge_model(data):
+def train_model(data):
     #Add a new column '2029' to the dataset, calculated using linear extrapolation
     data['2029'] = data['2024'] - (data['2019'] - data['2024'])
 
@@ -50,15 +50,15 @@ def train_ridge_model(data):
     print(coefficients)
 
     #Save the trained Ridge model to a file
-    model_file = 'models/ridge_2029_predictor_model.pkl'
+    model_file = 'models/model.pkl'
     os.makedirs('models', exist_ok=True)  #Create the 'models' directory if it doesn't exist
     joblib.dump(model, model_file)  #Save the model
 
-    print(f"\nTrained Ridge model saved to {model_file}.")
-    print(f"Running model to generate predictions - {model_file}")
 
+def generate_data(data):
     #Load the saved Ridge model for inference
-    ridge_model = joblib.load(model_file)
+    model_file = 'models/model.pkl'
+    model = joblib.load(model_file)
 
     #Prepare a new DataFrame for generating predictions
     new_data_df = data
@@ -71,13 +71,13 @@ def train_ridge_model(data):
     scaled_features = scaler.fit_transform(input_features)
 
     #Generate predictions using the Ridge model
-    new_data_df['2029'] = ridge_model.predict(scaled_features)
+    new_data_df['2029'] = model.predict(scaled_features)
 
     #Round the predictions to one decimal place
     new_data_df['2029'] = new_data_df['2029'].round(1)
 
     #Save the updated dataset with predictions to a CSV file
-    output_file_path = 'webdev/data/dynamic_dataset.csv'
+    output_file_path = 'data/dynamic_dataset.csv'
     new_data_df.to_csv(output_file_path, index=False)
 
     print(f"Updated dataset saved to {output_file_path}")
