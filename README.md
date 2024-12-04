@@ -3,6 +3,9 @@ Repo for Flask server which will run front end and AI model training for soil or
 
 ![Screen Recording 2024-12-01 111450](https://github.com/user-attachments/assets/014c1233-fb8d-4b61-b7c1-2be42dcd11ef)
 
+# Members
+-Joshua Wurtenberg
+
 # Machine Learning Web Application
 
 This repository contains a web application for training and predicting using machine learning models, specifically Ridge Regression and Random Forest. The application is built using Flask and includes functionalities for data visualization and model training.
