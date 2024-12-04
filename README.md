@@ -39,7 +39,7 @@ This repository contains a web application for training and predicting using mac
 
 1. **Start the Flask server**:
     ```sh
-    python webdev/app.py
+    python code/app.py
     ```
 
 2. **Open your browser** and navigate to `http://127.0.0.1:5000/` to access the application.
