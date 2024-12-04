@@ -62,7 +62,7 @@ def generate_heatmap():
     heatmap_list = heatmap_data.values.tolist()
     florida_map = folium.Map(location=[27.994402, -81.760254], zoom_start=7)
     HeatMap(heatmap_list, radius=15).add_to(florida_map)
-    output_file = os.path.join('static', 'maps', f"florida_heatmap_{selected_year}.html")
+    output_file = os.path.join('code','static', 'maps', f"florida_heatmap_{selected_year}.html")
     florida_map.save(output_file)
     return render_template('map.html', year=selected_year, map_file=f"maps/florida_heatmap_{selected_year}.html")
 
