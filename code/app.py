@@ -16,7 +16,7 @@ def get_data():
     data = pd.read_csv(file_path)
     return data
 
-output_folder = "static/maps"
+output_folder = "code/static/maps"
 os.makedirs(output_folder, exist_ok=True)
 
 
@@ -123,7 +123,7 @@ def reset_dataset():
         untouched_file_path = "data/original_dataset.csv"
         untouched_data = pd.read_csv(untouched_file_path)
         untouched_data.to_csv(cleaned_file_path, index=False)
-        return '', 204  
+        return '', 200  
     except Exception as e:
         return f"An error occurred: {e}", 500
 
