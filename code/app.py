@@ -5,7 +5,7 @@ import signal
 import time
 import pandas as pd
 from ridge_model import train_model, generate_data  
-from flask import Flask, render_template, request 
+from flask import Flask, render_template, request, send_file 
 from geopy.distance import geodesic  
 from folium.plugins import HeatMap  
 
