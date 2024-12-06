@@ -135,5 +135,10 @@ def shutdown():
     from threading import Thread
     Thread(target=delayed_shutdown).start()
 
+@app.route('/download')
+def download_file():
+    path = "../data/original_dataset.csv"
+    return send_file(path, as_attachment=True)
+
 if __name__ == '__main__':
     app.run(debug=True)
