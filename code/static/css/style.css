@@ -1,0 +1,202 @@
+/* Background gradient */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #1e90ff, #32cd32);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Centering content */
+.container {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border-radius: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+/* Styling buttons */
+button {
+    background-color: #ffffff;
+    color: #1e90ff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 1em;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #32cd32;
+    color: white;
+    transform: scale(1.1);
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff4500;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+    background-color: #e63900;
+    transform: scale(1.1);
+}
+
+input[type="file"] {
+    margin: 10px 0;
+    padding: 5px;
+}
+
+
+
+/* Styling buttons */
+.year-buttons button {
+    background-color: #ffffff;
+    color: #1e90ff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.year-buttons button:hover {
+    background-color: #32cd32;
+    color: white;
+    transform: scale(1.1);
+}
+
+.year-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.train-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #05a000;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.train-button:hover {
+    background-color: #ff0000;
+    transform: scale(1.1);
+}
+
+
+/* Shutdown button style */
+.shutdown-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.shutdown-button:hover {
+    background-color: #e63900;
+    transform: scale(1.1);
+}
+
+
+
+
+/* MAP.HTML CSS */
+
+/* Container for the content */
+.containerMap {
+   width: 90%;
+   max-width: 1200px;
+   background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Back button styling */
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Map and data container */
+.map-data-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Map container styling */
+#map {
+    flex: 2;
+    height: 600px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Output styling */
+#output {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+#output h2 {
+    margin-top: 0;
+}
