@@ -1,27 +1,25 @@
 # CEN4930-Live-Demo
-Repo for Flask server which will run front end and AI model training for soil organic carbon level mapping and prediction. 
+Repo for Flask server which will run frontend and AI model training for soil organic carbon level mapping and prediction. 
 
 ![Screen Recording 2024-12-01 111450](https://github.com/user-attachments/assets/014c1233-fb8d-4b61-b7c1-2be42dcd11ef)
 
 # Members
 - William Ward
+- Alyssa Chiego
 - Joshua Wurtenberg
 - Caleb Newman
 - Julio Lapon
 - Jonathan Howard
 - Arnulfo Villicana
-- Alyssa Chiego
 
 # Machine Learning Web Application
 
-This repository contains a web application for training and predicting using machine learning models, specifically Ridge Regression and Random Forest. The application is built using Flask and includes functionalities for data visualization and model training.
+This repository contains a web application for training and predicting using machine learning models. The application is built using Flask and includes functionalities for data visualization and model training.
 
 ## Project Structure
 
 - **app.py**: Main Flask application file that handles routing and server logic.
 - **dynamic_dataset.csv**: The dataset used for generating the heat map.
-- **random_forest_model.py**: Script for training and predicting using a Random Forest model.
-- **ridge_model.py**: Script for training and predicting using a Ridge Regression model.
 - **templates/**: Directory containing HTML templates for the web application.
 - **original_dataset.csv**: Original dataset before any modifications, used to train the models
 
@@ -55,8 +53,6 @@ This repository contains a web application for training and predicting using mac
 
 ## Usage
 
-- **Train Ridge Regression Model**: Upload a dataset and train a Ridge Regression model.
-- **Train Random Forest Model**: Upload a dataset and train a Random Forest model.
 - **Generate Heatmap**: Visualize data on a heatmap based on the selected year.
 - **Reset Dataset**: Reset the dataset to its original state.
 
