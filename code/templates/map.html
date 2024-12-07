@@ -4,191 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heat Map for {{ year }}</title>
+
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v='1.0') }}">
+
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" crossorigin="anonymous"></script>
-    <!-- Leaflet Heatmap Plugin -->
     <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
-    <style>
-        /* Gradient background */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #1e90ff, #32cd32);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        /* Container for the content */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        /* Back button styling */
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3;
-            transform: scale(1.1);
-        }
-
-        /* Map and data container */
-        .map-data-container {
-            display: flex;
-            gap: 20px;
-            justify-content: space-between;
-        }
-
-        /* Map container styling */
-        #map {
-            flex: 2;
-            height: 600px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Output styling */
-        #output {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.8);
-            color: black;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            overflow-y: auto;
-            max-height: 600px;
-        }
-
-        #output h2 {
-            margin-top: 0;
-        }
-    </style>
+    <script src="{{ url_for('static', filename='js/map.js') }}" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Heat Map for {{ year }}</h1>
+    <div class="containerMap">
+        <h3>Heat Map for {{ year }}</h3>
         <a href="/" class="back-button">← Back to Select Year</a>
         <div class="map-data-container">
-            <div id="map"></div>
+            <div id="map" data-year="{{ year }}"></div>
             <div id="output">
                 <h2>Nearest Data:</h2>
                 <p>No data selected yet. Click on the map to fetch data.</p>
             </div>
         </div>
     </div>
-    <script>
-        // Fetch heat map data and add to the map
-        function generateHeatMap(selectedYear) {
-            fetch('/get_heatmap_data', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ year: selectedYear })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    alert(data.error);
-                    return;
-                }
-
-                // Clear existing layers (if any)
-                if (window.heatLayer) {
-                    map.removeLayer(window.heatLayer);
-                }
-
-                // Add new heat map layer
-                window.heatLayer = L.heatLayer(data.heatmap_data, { radius: 15 }).addTo(map);
-            })
-            .catch(err => {
-                console.error('Error fetching heatmap data:', err);
-            });
-        }
-
-        // Initialize the map
-        const map = L.map('map').setView([27.994402, -81.760254], 7);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-        // Call generateHeatMap with the selected year (example: '2021')
-        const selectedYear = "{{ year }}"; // From Flask template rendering
-        generateHeatMap(selectedYear);
-
-        // Handle map click event for nearest point lookup
-        function onMapClick(e) {
-            const clickedLat = e.latlng.lat;
-            const clickedLng = e.latlng.lng;
-
-            const outputDiv = document.getElementById('output');
-
-            fetch('/get_nearest_data', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ latitude: clickedLat, longitude: clickedLng })
-            })
-            .then(response => response.json())
-            .then(data => {
-                const selectedYear = parseInt("{{ year }}", 10);
-                const filteredData = Object.keys(data)
-                    .filter(key => !isNaN(parseInt(key, 10)) && parseInt(key, 10) <= selectedYear) // Include years <= selected year
-                    .reduce((result, key) => {
-                        result[key] = data[key];
-                        return result;
-                    }, {});
-
-                // Display data or error message
-                if (Object.keys(filteredData).length > 0) {
-                    const dataEntries = Object.entries(filteredData)
-                    .map(([year, value]) => {
-                        const isPredicted = parseInt(year, 10) === 2029 ? " - AI predicted value" : "";
-                        return `<p><strong>Year ${year}:</strong> ${value}${isPredicted}</p>`;
-                    })
-                    .join("");
-
-                    outputDiv.innerHTML = `
-                        <h2>Nearest Data:</h2>
-                        <p><strong>Coordinates:</strong> (${data.latitude.toFixed(4)}, ${data.longitude.toFixed(4)})</p>
-                        ${dataEntries}
-                    `;
-                } else {
-                    outputDiv.innerHTML = `
-                        <h2>Nearest Data:</h2>
-                        <p style="color: red;">No data available for the selected year (${selectedYear}) or earlier.</p>
-                    `;
-                }
-            })
-            .catch(err => {
-                outputDiv.innerHTML = `<h2>Error:</h2><pre>${err.message}</pre>`;
-            });
-        }
-
-
-        map.on('click', onMapClick);
-    </script>
 </body>
 </html>
