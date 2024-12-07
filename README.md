@@ -20,6 +20,7 @@ This repository contains a web application for training and predicting using mac
 
 - **app.py**: Main Flask application file that handles routing and server logic.
 - **dynamic_dataset.csv**: The dataset used for generating the heat map.
+- **static/**: Directory containing CSS and JavaScript files.
 - **templates/**: Directory containing HTML templates for the web application.
 - **original_dataset.csv**: Original dataset before any modifications, used to train the models
 
