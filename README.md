@@ -1,7 +1,7 @@
 # CEN4930-Live-Demo
-Repo for Flask server which will run frontend and AI model training for soil organic carbon level mapping and prediction. 
+Repo for Flask server which will run frontend and AI model training for soil organic carbon level mapping and prediction. Final output demo is hosted on AWS EC2 instance, as shown here.
 
-![Screen Recording 2024-12-01 111450](https://github.com/user-attachments/assets/014c1233-fb8d-4b61-b7c1-2be42dcd11ef)
+https://github.com/user-attachments/assets/df5cbf91-9c60-4856-9f9f-e64d1bea2a1e
 
 # Members
 - William Ward
@@ -35,7 +35,7 @@ This repository contains a web application for training and predicting using mac
 2. **Create a virtual environment**:
     ```sh
     python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate` or .\venv\Scripts\activate
     ```
 
 3. **Install the dependencies**:
@@ -53,13 +53,9 @@ This repository contains a web application for training and predicting using mac
 2. **Open your browser** and navigate to `http://127.0.0.1:5000/` to access the application.
 
 ## Usage
-
+- **Train Model**: Offer the ability to train a model with a provided dataset (please use the 'download file' link as the data to train the model, as this is a demo only)
 - **Generate Heatmap**: Visualize data on a heatmap based on the selected year.
 - **Reset Dataset**: Reset the dataset to its original state.
-
-## Contributing
-
-Feel free to submit issues or pull requests if you have any improvements or bug fixes.
 
 ## License
 
