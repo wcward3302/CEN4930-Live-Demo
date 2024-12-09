@@ -11,6 +11,7 @@ https://github.com/user-attachments/assets/df5cbf91-9c60-4856-9f9f-e64d1bea2a1e
 - Julio Lapon
 - Jonathan Howard
 - Arnulfo Villicana
+- Niel Patel
 
 # Machine Learning Web Application
 
