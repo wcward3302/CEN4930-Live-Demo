@@ -1,4 +1,6 @@
 # CEN4930-Live-Demo
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/wcward3302/CEN4930-Live-Demo/badge)](https://securityscorecards.dev/viewer/?uri=github.com/wcward3302/CEN4930-Live-Demo)
+
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/10328/badge)](https://www.bestpractices.dev/projects/10328)
 
 Repo for Flask server which will run frontend and AI model training for soil organic carbon level mapping and prediction. Final output demo is hosted on AWS EC2 instance, as shown here.
